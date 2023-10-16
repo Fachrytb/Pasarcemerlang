@@ -176,8 +176,7 @@ signInWithPopup(auth, provider)
     const token = credential.accessToken;
     // The signed-in user info.
     const user = result.user;
-    // IdP data available using getAdditionalUserInfo(result)
-    // ...
+    location.replace('penjual/index.html')
   }).catch((error) => {
     // Handle Errors here.
     const errorCode = error.code;
