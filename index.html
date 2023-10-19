@@ -153,42 +153,20 @@
   </footer>
   <script type="module">
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js';
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        // The signed-in user info.
-        const user = result.user;
-        // IdP data available using getAdditionalUserInfo(result)
-        // ...
-      }).catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.customData.email;
-        // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        // ...
-      });, 4
-
-
     import {
       getAuth,
       signInWithPopup,
       signOut,
       onAuthStateChanged,
       GoogleAuthProvider,
-
     } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js';
-
     import { konfigurasiFirebase } from '/Pasarcemerlang/konfigurasi-firebase.js';
+
     const app = initializeApp(konfigurasiFirebase);
     const provider = new GoogleAuthProvider();
     const auth = getAuth();
 
-    $ { document }.ready(function() {
+    $(document).ready(function() {
       $("#penjualogin").click(function() {
         signInWithPopup(auth, provider)
           .then((result) => {
@@ -197,7 +175,9 @@
             const token = credential.accessToken;
             // The signed-in user info.
             const user = result.user;
-            location.replace('/Pasarcemerlang/penjual/index.html')
+            // IdP data available using getAdditionalUserInfo(result)
+            // ...
+            location.replace('/Pasarcemerlang/penjual/index.html');
           }).catch((error) => {
             // Handle Errors here.
             const errorCode = error.code;
@@ -206,11 +186,9 @@
             const email = error.customData.email;
             // The AuthCredential type that was used.
             const credential = GoogleAuthProvider.credentialFromError(error);
-
+            // ...
           });
       });
-
-
     });
   </script>
 
