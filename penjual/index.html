@@ -89,7 +89,7 @@
   <script type ="module">
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js';
     import { konfigurasiFirebase } from '/Pasarcemerlang/konfigurasi-firebase.js';
-    import { getFirestore, setDoc, addDoc,getDocs, collection } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js ';
+    import { getFirestore, setDoc, addDoc,getDocs, collection } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js ";
     
         const app = initializeApp(konfigurasiFirebase);
         const db = getFirestore(app);
@@ -104,7 +104,7 @@
      });
       document.getElementById("contoh").innerHTML = barangRef.id;
     } catch (e) {
-    //document.getElementById("contoh").innerHTML = er;  
+    document.getElementById("contoh").innerHTML = e;  
       
     }
   </script>
