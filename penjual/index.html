@@ -86,26 +86,24 @@
     </ul>
     <p class="text-center text-body-secondary">&copy; 2023 Tokepedia</p>
   </footer>
-  <script type ="module">
+<script type="module">
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js';
     import { konfigurasiFirebase } from '/Pasarcemerlang/konfigurasi-firebase.js';
-    import { getFirestore,addDoc, collection } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js ";
-    
-        const app = initializeApp(konfigurasiFirebase);
-        const db = getFirestore(app);
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
+
+    const app = initializeApp(konfigurasiFirebase);
+    const db = getFirestore(app);
 
     try {
-      
-      const barangRef = await addDoc(collection(db,"barang"), {
-      
-      foto:"",
-      nama:"celana",
-      harga:12000
-     });
+      const barangRef = await addDoc(collection(db, "barang"), {
+        foto: "",
+        nama: "Pointer",
+        harga: 10000
+      });
+
       document.getElementById("contoh").innerHTML = barangRef.id;
     } catch (e) {
-    document.getElementById("contoh").innerHTML = e;  
-      
+      document.getElementById("contoh").innerHTML = e;
     }
   </script>
 
