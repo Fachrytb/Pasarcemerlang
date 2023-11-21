@@ -100,8 +100,8 @@
     $(document).ready(async function()){
       let namaBarang = $('#namab');
       let hargaBarang =$('#harga');
-     $("tmblsimpan").click(function(){
-       
+     $("tmblsimpan").click(function(event){
+       event preventDefault();  
      try { 
       const barangRef = await addDoc(collection(db, "barang"), {
         foto: "",
