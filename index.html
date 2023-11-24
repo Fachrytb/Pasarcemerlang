@@ -52,7 +52,7 @@
     </nav>
 
     <div class="m-2">
-      <h1>Pasar Cemerlang</h1>
+      <h1>Pasar Ghoib</h1>
 
       <div class="container-fluid">
         <div class="row" id="daftar-barang">
@@ -89,7 +89,7 @@
 
     const app = initializeApp(konfigurasiFirebase);
     const provider = new GoogleAuthProvider();
-    const auth = getAut h();
+    const auth = getAuth();
     const db = getFirestore(app);
 
     async function ambilDaftarBarang() {
