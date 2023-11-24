@@ -89,39 +89,34 @@
     </ul>
     <p class="text-center text-body-secondary">&copy; 2023 Tokepedia</p>
   </footer>
-<script type="module">
+  <script type="module">
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js';
-    import { konfigurasiFirebase } from '/Pasarcemerlang/konfigurasi-firebase.js';
+    import { konfigurasiFirebase } from '/pasarcemerlang/konfigurasi-firebase.js';
     import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
 
     const app = initializeApp(konfigurasiFirebase);
     const db = getFirestore(app);
-    
-    $(document).ready(function(){
-      let namaBarang = $("#namab");
-      let hargaBarang =$("#harga");
-     $("tmblsimpan").click(async function(event){
-       event.preventDefault() ;
-     try { 
-      const barangRef = await addDoc(collection(db, "barang"), {
-        foto: "",
-        nama: namaBarang.val(),
-        harga: hargaBarang.val()
-      });
-      
-      $("#pesan").html("berhasil masukin gaes"+namaBarang.val());
-     } catch(err){
-            
-      $("#pesan").html("gagal maning gaes"+namaBarang.val()+err);
-     }  
-       
-       
-       
-     });
-     
-    });
 
-    
+    $(document).ready(function() {
+      let namaBarang = $("#namab");
+      let hargaBarang = $("#harga");
+
+      $("#tmblsimpan").click(async function(event) {
+        event.preventDefault();
+        
+        try {
+          const barangRef = await addDoc(collection(db, "barang"), {
+            foto: "",
+            nama: namaBarang.val(),
+            harga: hargaBarang.val()
+          });
+
+          $("#pesan").html("Berhasil menambah barang " + namaBarang.val());
+        } catch (err) {
+          $("#pesan").html("Gagal menambah barang " + namaBarang.val() + err);
+        }
+      });
+    });
   </script>
 
 </body>
