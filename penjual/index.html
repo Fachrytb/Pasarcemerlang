@@ -70,7 +70,7 @@
         </div>
         <div class="mb-3">
           <label class="form-label">Foto / Gambar</label>
-          <input type="file" class="form-control" id="foto".. >
+          <input type="file" class="form-control" id="foto">
         </div>
         <div class="mb-3">
           <button type="submit" class="btn btn-primary" id="tmblsimpan">Simpan</button>
@@ -98,8 +98,8 @@
     const db = getFirestore(app);
     
     $(document).ready (function(){
-      let namaBarang = $('#namab');
-      let hargaBarang =$('#harga');
+      let namaBarang = $("#namab");
+      let hargaBarang =$("#harga");
      $("tmblsimpan").click(async function(event){
        event.preventDefault() ;
      try { 
