@@ -52,7 +52,7 @@
     </nav>
 
     <div class="m-2">
-      <h1>Pasar Ghoib</h1>
+      <h1>Pasar Cemerlang</h1>
 
       <div class="container-fluid">
         <div class="row" id="daftar-barang">
@@ -71,7 +71,7 @@
       <li class="nav-item"><a href="#" id="link-login-penjual" class="nav-link px-2 text-body-secondary">Login Penjual</a></li>
       <li class="nav-item"><a href="/Pasarcemerlang/tentang.html" class="nav-link px-2 text-body-secondary">Tentang</a></li>
     </ul>
-    <p class="text-center text-body-secondary">&copy; 2023 Tokepedia</p>
+    <p class="text-center text-body-secondary">&copy; 2023 Pasar Cemerlang</p>
   </footer>
 
   <script type="module">
@@ -83,24 +83,37 @@
       onAuthStateChanged,
       GoogleAuthProvider,
     } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js';
-   import { konfigurasiFirebase } from '/Pasarcemerlang/konfigurasi-firebase.js';
-  //  import { konfigurasiFirebase } from '/konfigurasi-firebase.js';
+    import { konfigurasiFirebase } from '/Pasarcemerlang/konfigurasi-firebase.js';
     import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
+    import { getStorage, ref, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-storage.js";
 
     const app = initializeApp(konfigurasiFirebase);
     const provider = new GoogleAuthProvider();
     const auth = getAuth();
     const db = getFirestore(app);
+    const storage = getStorage();
 
     async function ambilDaftarBarang() {
       const querySnapshot = await getDocs(collection(db, "barang"));
       let daftarBarang = [];
       querySnapshot.forEach((doc) => {
+        let namaFileFoto = doc.data().foto;
+
+        if (namaFileFoto != "") {
+          getDownloadURL(ref(storage, namaFileFoto))
+          .then((url) => {
+            const img = document.getElementById(doc.id);
+            img.setAttribute('src', url);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+        }
+
         daftarBarang.push({
           id: doc.id,
           nama: doc.data().nama,
           harga: doc.data().harga,
-          foto: doc.data().foto
         });
       });
 
@@ -115,7 +128,7 @@
       kumpulanBarang.forEach((element) => {
         elDaftarBarang.append(
           '<div class="card">' +
-          '<img src="https://picsum.photos/100/60" class="card-img-top">' +
+          '<img id="' + element.id + '" src="https://picsum.photos/100/60" class="card-img-top">' +
           '<div class="card-body">' +
           '<span>' + element.nama + ', ' + element.harga + '</span>' +
           '</div>' +
